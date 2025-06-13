@@ -211,8 +211,36 @@ select:focus, input[type="text"]:focus {
     box-shadow: 0 4px 8px rgba(0,0,0,0.4);
 }
 
-#win-btn { background-color: var(--win-button); }
-#loss-btn { background-color: var(--loss-button); }
+#win-btn,
+#loss-btn {
+    width: 100%;
+    padding: 16px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 10px;
+    font-family: 'Playfair Display', serif;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+    transition: background 0.3s, transform 0.2s;
+}
+
+#win-btn {
+    background-color: #2E8B57; /* Pool hall green */
+}
+
+#loss-btn {
+    background-color: #A52A2A; /* Deep classic red */
+}
+
+#win-btn:hover,
+#loss-btn:hover {
+    opacity: 0.9;
+    transform: scale(1.03);
+}
+
 
 .close-button {
     color: #aaa;
