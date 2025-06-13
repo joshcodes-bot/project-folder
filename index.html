@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pool Hall Leaderboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Cobham Street Pool Leaderboard</h1>
+
+    <!-- The leaderboard table will be filled by JavaScript -->
+    <table id="leaderboard">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Player</th>
+                <th>Wins</th>
+                <th>Losses</th>
+            </tr>
+        </thead>
+        <tbody id="leaderboard-body">
+            <!-- Player rows will go here -->
+        </tbody>
+    </table>
+
+    <button id="log-game-btn">Log a Game</button>
+
+    <!-- This is the hidden modal/popup menu -->
+    <div id="game-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Log Your Game</h2>
+            
+            <label for="player-select">Who are you?</label>
+            <select id="player-select">
+                <option value="new">-- Add New Player --</option>
+                <!-- Existing players will be added here by JS -->
+            </select>
+            
+            <input type="text" id="new-player-name" class="hidden" placeholder="Enter your name">
+
+            <p>What was the result?</p>
+            <button id="win-btn">I Won</button>
+            <button id="loss-btn">I Lost</button>
+            
+            <button id="close-modal-btn">Cancel</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
