@@ -281,21 +281,6 @@ select:focus, input[type="text"]:focus {
     margin-bottom: 20px;
 }
 
-.table-wrapper {
-    width: 100%;
-    overflow-x: auto;
-    padding: 0 10px;
-}
-
-table {
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto 30px auto;
-    font-size: 0.95rem;
-}
-
-
-
 @media (max-width: 600px) {
     body {
         padding: 20px 10px;
@@ -308,14 +293,15 @@ table {
     }
 
     table {
-        width: 100%;
-        font-size: 0.9rem;
-        border-width: 10px;
-    }
+    font-size: 0.85rem;
+    border-width: 8px;
+}
 
-    th, td {
-        padding: 10px 8px;
-    }
+th, td {
+    padding: 8px 6px;
+    font-size: 0.85rem;
+    word-break: break-word;
+}
 
     .modal-content {
         padding: 20px 16px;
