@@ -1,23 +1,16 @@
 // --- 1. INITIALIZE FIREBASE ---
-// PASTE your own `firebaseConfig` object that you copied from the Firebase console
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyAGMNJk7l0nYOffy99aEvp39MZc9DVy7aA",
   authDomain: "pool-scores-2a41d.firebaseapp.com",
   projectId: "pool-scores-2a41d",
-  storageBucket: "pool-scores-2a41d.firebasestorage.app",
+  storageBucket: "pool-scores-2a41d.appspot.com", // Corrected this line
   messagingSenderId: "230924224909",
-  appId: "1:230924224909:web:f366b63c4ea5846fc355c4",
-  measurementId: "G-M3DMHVL7VY"
+  appId: "1:230924224909:web:f366b63c4ea5846fc355c4"
 };
-// Initialize Firebase
+
+// Initialize Firebase using the global 'firebase' object from the script tag
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 const playersCollection = db.collection('players');
@@ -134,26 +127,36 @@ playerSelect.addEventListener('change', () => {
 
 // Handle win/loss submission
 async function handleGameLog(result) {
-    let playerId = playerSelect.value;
+    let playerName = playerSelect.value;
     const newPlayerName = newPlayerNameInput.value.trim();
 
-    // Check for validation
-    if (playerId === 'new' && newPlayerName === '') {
-        alert('Please enter a name for the new player.');
-        return;
-    }
-
     try {
-        // If it's a new player, create them first
-        if (playerId === 'new') {
+        let playerId;
+
+        if (playerName === 'new') {
+            if (!newPlayerName) {
+                alert('Please enter a name for the new player.');
+                return;
+            }
+
             playerId = await addNewPlayer(newPlayerName);
-            if (!playerId) return; // Stop if player creation failed (e.g., name exists)
+            if (!playerId) return;
+
+        } else {
+            // Lookup document ID by player name (case-insensitive)
+            const snapshot = await playersCollection
+                .where('name_lowercase', '==', playerName.toLowerCase())
+                .get();
+
+            if (snapshot.empty) {
+                alert(`Player "${playerName}" not found in the database.`);
+                return;
+            }
+
+            playerId = snapshot.docs[0].id;
         }
 
-        // Update the score for the selected or newly created player
         await updateScore(playerId, result);
-
-        // Close modal and refresh the leaderboard
         gameModal.classList.add('hidden');
         await renderLeaderboard();
 
@@ -162,6 +165,7 @@ async function handleGameLog(result) {
         alert("There was an error saving the score.");
     }
 }
+
 
 winBtn.addEventListener('click', () => handleGameLog('win'));
 lossBtn.addEventListener('click', () => handleGameLog('loss'));
