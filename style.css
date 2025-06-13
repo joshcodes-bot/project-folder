@@ -280,10 +280,6 @@ select:focus, input[type="text"]:focus {
     justify-content: center;
     margin-bottom: 20px;
 }
-    .logo-img {
-        max-width: 140px;
-    }
-
 
 
 @media (max-width: 600px) {
@@ -321,6 +317,10 @@ select:focus, input[type="text"]:focus {
     button {
     min-height: 48px;
     touch-action: manipulation;
-}
+    }
+       .logo-img {
+        max-width: 140px;
+    }
+
 
 }
