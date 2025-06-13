@@ -228,30 +228,40 @@ select:focus, input[type="text"]:focus {
 .close-button:hover { color: var(--loss-button); }
 
 
-/* --- Mobile Responsiveness --- */
 @media (max-width: 600px) {
     body {
         padding: 20px 10px;
+        font-size: 0.95rem;
     }
-    
+
     h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
+        text-align: center;
     }
 
     table {
         width: 100%;
-        border-width: 8px;
+        font-size: 0.9rem;
+        border-width: 10px;
     }
 
     th, td {
         padding: 10px 8px;
     }
-    
-    th {
-        font-size: 0.9rem;
-    }
 
     .modal-content {
-        padding: 20px;
+        padding: 20px 16px;
+        width: 95%;
+        max-width: none;
+    }
+
+    select, input[type="text"] {
+        font-size: 1rem;
+        padding: 10px;
+    }
+
+    #log-game-btn, #close-modal-btn, #win-btn, #loss-btn {
+        font-size: 1rem;
+        padding: 10px 12px;
     }
 }
