@@ -281,6 +281,20 @@ select:focus, input[type="text"]:focus {
     margin-bottom: 20px;
 }
 
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    padding: 0 10px;
+}
+
+table {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+    font-size: 0.95rem;
+}
+
+
 
 @media (max-width: 600px) {
     body {
