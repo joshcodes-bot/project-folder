@@ -243,7 +243,9 @@ select:focus, input[type="text"]:focus {
 
 
 #close-modal-btn {
-    width: 100%;
+    display: block;
+    margin: 20px auto 0 auto; /* Top spacing + centered horizontally */
+    width: 80%;
     padding: 14px;
     font-size: 1.2rem;
     font-weight: bold;
@@ -255,7 +257,6 @@ select:focus, input[type="text"]:focus {
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     transition: background 0.3s, transform 0.2s;
-    margin-top: 15px;
 }
 
 #close-modal-btn:hover {
