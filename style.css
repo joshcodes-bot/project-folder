@@ -274,6 +274,17 @@ select:focus, input[type="text"]:focus {
     height: auto;
 }
 
+   /* Logo container */
+.logo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+    .logo-img {
+        max-width: 140px;
+    }
+
+
 
 @media (max-width: 600px) {
     body {
@@ -311,17 +322,5 @@ select:focus, input[type="text"]:focus {
     min-height: 48px;
     touch-action: manipulation;
 }
-
-   /* Logo container */
-.logo-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-    .logo-img {
-        max-width: 140px;
-    }
-
-
 
 }
