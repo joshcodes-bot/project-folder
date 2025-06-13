@@ -31,33 +31,49 @@ const lossBtn = document.getElementById('loss-btn');
 
 // Function to fetch players and display them
 async function renderLeaderboard() {
-    // Get players from Firestore, ordered by wins descending
-    const snapshot = await playersCollection.orderBy('wins', 'desc').get();
-    
-    leaderboardBody.innerHTML = ''; // Clear existing table
-    let rank = 1;
+    const snapshot = await playersCollection.get();
+    leaderboardBody.innerHTML = '';
 
-    if (snapshot.empty) {
-        leaderboardBody.innerHTML = '<tr><td colspan="4">No players yet. Log a game to start!</td></tr>';
+    const players = [];
+
+    snapshot.forEach(doc => {
+        const data = doc.data();
+        const wins = data.wins || 0;
+        const losses = data.losses || 0;
+        const totalGames = wins + losses;
+        const ratio = totalGames === 0 ? 0 : (wins / totalGames);
+
+        players.push({
+            id: doc.id,
+            name: data.name,
+            wins,
+            losses,
+            ratio
+        });
+    });
+
+    // Sort by win/loss ratio descending
+    players.sort((a, b) => b.ratio - a.ratio);
+
+    if (players.length === 0) {
+        leaderboardBody.innerHTML = '<tr><td colspan="5">No players yet. Log a game to start!</td></tr>';
         return;
     }
 
-    snapshot.forEach(doc => {
-        const player = doc.data();
-        player.id = doc.id; // Store document ID for updates
-
+    let rank = 1;
+    players.forEach(player => {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${rank}</td>
             <td>${player.name}</td>
             <td>${player.wins}</td>
             <td>${player.losses}</td>
+            <td>${(player.ratio * 100).toFixed(1)}%</td>
         `;
         leaderboardBody.appendChild(row);
         rank++;
     });
 
-    // Also update the player selection dropdown for the modal
     populatePlayerSelect(snapshot.docs);
 }
 
