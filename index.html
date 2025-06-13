@@ -34,10 +34,13 @@
             
             <label for="player-select">Who are you?</label>
             <select id="player-select">
-                <option value="new">-- Add New Player --</option>
-                <!-- Existing players will be added here by JS -->
-            </select>
-            
+            <option value="new">-- Add New Player --</option>
+            <option value="josh">Josh</option>
+            <option value="riley">Riley</option>
+            <option value="lachie">Lachie</option>
+            <option value="kevin">Kevin</option>
+        </select>
+
             <input type="text" id="new-player-name" class="hidden" placeholder="Enter your name">
 
             <p>What was the result?</p>
@@ -48,6 +51,8 @@
         </div>
     </div>
 
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
