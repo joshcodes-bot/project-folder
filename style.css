@@ -242,18 +242,27 @@ select:focus, input[type="text"]:focus {
 }
 
 
-.close-button {
-    color: #aaa;
-    position: absolute;
-    top: 5px;
-    right: 15px;
-    font-size: 35px;
+#close-modal-btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 1.2rem;
     font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    background-color: #444;
+    color: #eee;
+    font-family: 'Playfair Display', serif;
     cursor: pointer;
-    transition: color 0.3s;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transition: background 0.3s, transform 0.2s;
+    margin-top: 15px;
 }
 
-.close-button:hover { color: var(--loss-button); }
+#close-modal-btn:hover {
+    background-color: #666;
+    transform: scale(1.03);
+}
+
 
 
 @media (max-width: 600px) {
@@ -288,8 +297,9 @@ select:focus, input[type="text"]:focus {
         padding: 10px;
     }
 
-    #log-game-btn, #close-modal-btn, #win-btn, #loss-btn {
-        font-size: 1rem;
-        padding: 10px 12px;
-    }
+    button {
+    min-height: 48px;
+    touch-action: manipulation;
+}
+
 }
